@@ -1,0 +1,56 @@
+---
+title: "Bruprosjekt"
+---
+
+```{python}
+import pandas as pd
+import plotly.io as pio
+import plotly.express as px
+
+pio.renderers.default = "plotly_mimetype+notebook_connected"
+```
+
+Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
+
+```{python}
+#| fig-cap: "Bruprosjekt - resultater"
+#| echo: false
+df = pd.read_csv('Resultater.csv', delimiter=";", encoding="latin-1" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall"]][1:]
+
+for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
+    df[col] = df[col].str.replace(",", ".").astype(float)
+
+# Convert Gruppe to int
+df["Gruppe"] = df["Gruppe"].astype(int)
+
+df = df.dropna(subset=["Egenvekt"])
+
+fig = px.scatter(df, title="Bruprosjekt - resultater", x="Egenvekt", y="Påsatt vekt", size="Forholdstall",
+                 hover_name="Gruppe", log_x=False, log_y=False, size_max=10)
+
+fig.update_traces(
+    hovertemplate="Gruppe: %{customdata[0]}<br>Egenvekt: %{x:.0f} g<br>Påsatt vekt: %{y:.0f} g",
+    customdata=df[["Gruppe"]]  # needs to be 2D array or dataframe
+)
+fig.update_layout(
+    title_font_size=18,
+    title_x=0.5,
+    xaxis_title="Egenvekt [gram]",
+    yaxis_title="Påsatt vekt [gram]",
+    font=dict(size=14),
+    hoverlabel=dict(bgcolor="white")
+)
+# Format axes to show full numbers (no 'k')
+fig.update_xaxes(
+    title="Egenvekt (gram)",
+    tickformat=",.0f"   # Full integer format
+)
+fig.update_yaxes(
+    title="Påsatt vekt (gram)",
+    tickformat="..0f"
+)
+
+
+
+fig.show()
+```
