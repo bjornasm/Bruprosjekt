@@ -6,6 +6,7 @@ title: "Bruprosjekt"
 import pandas as pd
 import plotly.io as pio
 import plotly.express as px
+from datetime import date
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"
 ```
@@ -13,9 +14,11 @@ pio.renderers.default = "plotly_mimetype+notebook_connected"
 Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
 
 ```{python}
-#| fig-cap: "Bruprosjekt - resultater"
 #| echo: false
 df = pd.read_csv('Resultater.csv', delimiter=";", encoding="latin-1" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall"]][1:]
+
+render_date = date.today().strftime("%Y-%m-%d")
+
 
 for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
     df[col] = df[col].str.replace(",", ".").astype(float)
@@ -25,12 +28,17 @@ df["Gruppe"] = df["Gruppe"].astype(int)
 
 df = df.dropna(subset=["Egenvekt"])
 
-fig = px.scatter(df, title="Bruprosjekt - resultater", x="Egenvekt", y="Påsatt vekt", size="Forholdstall",
-                 hover_name="Gruppe", log_x=False, log_y=False, size_max=10)
+```
+
+```{python}
+#| echo: false
+#| layout-align: center
+fig = px.scatter(df, x="Egenvekt", y="Påsatt vekt", size="Forholdstall",
+                 hover_name="Gruppe", color="Forholdstall", log_x=False, log_y=False, size_max=15, color_continuous_scale=px.colors.sequential.Sunset)
 
 fig.update_traces(
-    hovertemplate="Gruppe: %{customdata[0]}<br>Egenvekt: %{x:.0f} g<br>Påsatt vekt: %{y:.0f} g",
-    customdata=df[["Gruppe"]]  # needs to be 2D array or dataframe
+    hovertemplate="Gruppe: %{customdata[0]}<br>Egenvekt: %{x:.0f} g<br>Påsatt vekt: %{y:.0f} g<br>Forholdstall: %{customdata[1]:.1f}",
+    customdata=df[["Gruppe", "Forholdstall"]]  # needs to be 2D array or dataframe
 )
 fig.update_layout(
     title_font_size=18,
@@ -49,8 +57,6 @@ fig.update_yaxes(
     title="Påsatt vekt (gram)",
     tickformat="..0f"
 )
-
-
 
 fig.show()
 ```

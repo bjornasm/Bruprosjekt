@@ -1,8 +1,10 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Bruprosjekt"
+  
 
 format:
   html:
@@ -17,3 +19,6 @@ execute:
   warning: false
   error: false
   message: false
+
+
+date: last-modified
