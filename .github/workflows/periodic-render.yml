@@ -1,0 +1,42 @@
+name: Render Quarto Site
+
+on:
+  schedule:
+    - cron: "0 8 * * 1-5"
+    - cron: "0 12 * * 1-5"
+    - cron: "0 16 * * 1-5"
+    - cron: "0 18 * * 1-5"
+
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      note:
+        description: 'Manual run'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Sync Python environment with uv
+        run: uv sync
+
+      - name: Activate virtual environment
+        run: source .venv/bin/activate
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render Quarto Project
+        run: quarto render
+
+      - name: Publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
