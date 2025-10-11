@@ -7,27 +7,39 @@ import pandas as pd
 import plotly.io as pio
 import plotly.express as px
 from datetime import date
+from IPython.display import Markdown
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"
 ```
 
-Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
-
 ```{python}
 #| echo: false
-df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv", encoding="utf-8" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall"]]
-
-render_date = date.today().strftime("%Y-%m-%d")
-
+df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv", encoding="utf-8" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall", "Dato"]]
 
 for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
     df[col] = df[col].str.replace(",", ".").astype(float)
 
-# Convert Gruppe to int
 df["Gruppe"] = df["Gruppe"].astype(int)
 
 df = df.dropna(subset=["Egenvekt"])
+
+
+df["Dato"] = pd.to_datetime(df["Dato"], format="%d.%m.%Y")
+
+siste_labdag = df['Dato'].max()
 ```
+
+Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
+
+Siste resultater er fra `{python} siste_labdag.strftime("%d-%m-%Y")`.
+
+
+### Topp tre bruer etter forholdstall
+```{python}
+Markdown(df[['Gruppe', 'Egenvekt', 'Påsatt vekt', 'Forholdstall']].sort_values(by='Forholdstall', ascending=False).head(3).to_markdown(index=False))
+```
+
+### Alle resultater
 
 ```{python}
 #| echo: false
@@ -36,8 +48,8 @@ fig = px.scatter(df, x="Egenvekt", y="Påsatt vekt", size="Forholdstall",
                  hover_name="Gruppe", color="Forholdstall", log_x=False, log_y=False, size_max=15, color_continuous_scale=px.colors.sequential.Sunset)
 
 fig.update_traces(
-    hovertemplate="Gruppe: %{customdata[0]}<br>Egenvekt: %{x:.0f} g<br>Påsatt vekt: %{y:.0f} g<br>Forholdstall: %{customdata[1]:.1f}",
-    customdata=df[["Gruppe", "Forholdstall"]]  # needs to be 2D array or dataframe
+    hovertemplate="Gruppe: %{customdata[0]}<br>Egenvekt: %{x:.0f} g<br>Påsatt vekt: %{y:.0f} g<br>Forholdstall: %{customdata[1]:.2f}",
+    customdata=df[["Gruppe", "Forholdstall"]] 
 )
 fig.update_layout(
     title_font_size=18,
@@ -47,15 +59,26 @@ fig.update_layout(
     font=dict(size=14),
     hoverlabel=dict(bgcolor="white")
 )
-# Format axes to show full numbers (no 'k')
+
 fig.update_xaxes(
     title="Egenvekt (gram)",
-    tickformat=",.0f"   # Full integer format
+    tickformat=",.0f"   
 )
 fig.update_yaxes(
     title="Påsatt vekt (gram)",
     tickformat="..0f"
 )
+fig.update_layout(
+    autosize=True,
+    margin=dict(l=20, r=20, t=60, b=60),
+        coloraxis_colorbar=dict(
+        title=dict(
+            text="Forholdstall",   # keep or change the text
+            font=dict(size=12)     # 🔹 title font size here
+        ),
+        tickfont=dict(size=12)
+    )
+)
+fig.show(config={"displayModeBar": False})
 
-fig.show()
 ```
