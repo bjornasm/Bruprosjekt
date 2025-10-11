@@ -15,7 +15,7 @@ Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
 
 ```{python}
 #| echo: false
-df = pd.read_csv('Resultater.csv', delimiter=";", encoding="latin-1" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall"]][1:]
+df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv", encoding="utf-8" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall"]]
 
 render_date = date.today().strftime("%Y-%m-%d")
 
@@ -27,7 +27,6 @@ for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
 df["Gruppe"] = df["Gruppe"].astype(int)
 
 df = df.dropna(subset=["Egenvekt"])
-
 ```
 
 ```{python}
