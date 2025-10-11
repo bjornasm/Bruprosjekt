@@ -2,9 +2,9 @@ project:
   type: website
   output-dir: docs
 
+
 website:
   title: "Bruprosjekt"
-  
 
 format:
   html:
@@ -12,7 +12,7 @@ format:
       - cosmo
       - brand
     css: styles.css
-    toc: true
+    toc: false
 
 execute:
   echo: false       # Don't show code in output
@@ -20,5 +20,3 @@ execute:
   error: false
   message: false
 
-
-date: last-modified
