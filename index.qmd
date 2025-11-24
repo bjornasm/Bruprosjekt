@@ -36,7 +36,25 @@ Siste resultater er fra `{python} siste_labdag.strftime("%d-%m-%Y")`.
 
 ### Topp tre bruer etter forholdstall
 ```{python}
-Markdown(df[['Gruppe', 'Egenvekt', 'Påsatt vekt', 'Forholdstall']].sort_values(by='Forholdstall', ascending=False).head(3).to_markdown(index=False))
+
+def add_g(s):
+    return s.apply(lambda x: f"{x} g")
+
+cols_with_g = ['Egenvekt', 'Påsatt vekt']
+chosen_cols = ['Gruppe', 'Egenvekt', 'Påsatt vekt', 'Forholdstall']
+
+df2 = (
+    df.assign(**{col:g add_g(df[col]) for col in cols_with_g})[chosen_cols]
+      .sort_values('Forholdstall', ascending=False)
+      .head(3)
+)
+
+Markdown(
+    df2.to_markdown(
+        index=False,
+        colalign=("right", "right", "right", "right")
+    )
+)
 ```
 
 ### Alle resultater
@@ -80,5 +98,4 @@ fig.update_layout(
     )
 )
 fig.show(config={"displayModeBar": False})
-
 ```
