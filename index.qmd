@@ -44,7 +44,7 @@ cols_with_g = ['Egenvekt', 'Påsatt vekt']
 chosen_cols = ['Gruppe', 'Egenvekt', 'Påsatt vekt', 'Forholdstall']
 
 df2 = (
-    df.assign(**{col:g add_g(df[col]) for col in cols_with_g})[chosen_cols]
+    df.assign(**{col:add_g(df[col]) for col in cols_with_g})[chosen_cols]
       .sort_values('Forholdstall', ascending=False)
       .head(3)
 )
