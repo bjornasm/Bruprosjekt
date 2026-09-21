@@ -5,14 +5,27 @@ project:
 
 website:
   title: "Bruprosjekt"
+  search: false
+  
+  sidebar:
+    position: right
+    style: "floating"
+    contents:
+      - text: Resultater
+        href: index.qmd
+      - text: Informasjon
+        href: informasjon.qmd
 
-format:
+format: 
   html:
     theme:
       - cosmo
       - brand
     css: styles.css
-    toc: false
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    toc-title: Innhold
 
 execute:
   echo: false       # Don't show code in output

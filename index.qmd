@@ -14,7 +14,10 @@ pio.renderers.default = "plotly_mimetype+notebook_connected"
 
 ```{python}
 #| echo: false
-df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv", encoding="utf-8" )[["Gruppe", "Egenvekt", "Påsatt vekt","Forholdstall", "Dato"]]
+df = pd.read_csv(
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv",
+    encoding="utf-8",
+)[["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]]
 
 for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
     df[col] = df[col].str.replace(",", ".").astype(float)
@@ -26,13 +29,12 @@ df = df.dropna(subset=["Egenvekt"])
 
 df["Dato"] = pd.to_datetime(df["Dato"], format="%d.%m.%Y")
 
-siste_labdag = df['Dato'].max()
+siste_labdag = df["Dato"].max()
 ```
 
 Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.
 
 Siste resultater er fra `{python} siste_labdag.strftime("%d-%m-%Y")`.
-
 
 ### Topp tre bruer etter forholdstall
 ```{python}
@@ -40,25 +42,25 @@ Siste resultater er fra `{python} siste_labdag.strftime("%d-%m-%Y")`.
 def add_g(s):
     return s.apply(lambda x: f"{x} g")
 
-cols_with_g = ['Egenvekt', 'Påsatt vekt']
-chosen_cols = ['Gruppe', 'Egenvekt', 'Påsatt vekt', 'Forholdstall']
+
+cols_with_g = ["Egenvekt", "Påsatt vekt"]
+chosen_cols = ["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]
 
 df2 = (
-    df.assign(**{col:add_g(df[col]) for col in cols_with_g})[chosen_cols]
-      .sort_values('Forholdstall', ascending=False)
-      .head(3)
+    df.assign(
+        **{col: add_g(df[col]) for col in cols_with_g},
+        Dato=df["Dato"].dt.strftime("%d-%m-%Y"),
+    )[chosen_cols]
+    .sort_values("Forholdstall", ascending=False)
+    .head(3)
 )
 
 Markdown(
-    df2.to_markdown(
-        index=False,
-        colalign=("right", "right", "right", "right")
-    )
+    df2.to_markdown(index=False, colalign=("right", "right", "right", "right", "right"))
 )
 ```
 
 ### Alle resultater
-
 ```{python}
 #| echo: false
 #| layout-align: center
