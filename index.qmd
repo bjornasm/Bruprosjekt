@@ -52,11 +52,10 @@ df2 = (
         Dato=df["Dato"].dt.strftime("%d-%m-%Y"),
     )[chosen_cols]
     .sort_values("Forholdstall", ascending=False)
-    .head(3)
 )
 
 Markdown(
-    df2.to_markdown(index=False, colalign=("right", "right", "right", "right", "right"))
+    df2.head(3).to_markdown(index=False, colalign=("right", "right", "right", "right", "right"))
 )
 ```
 
@@ -113,4 +112,23 @@ fig.update_layout(
     ),
 )
 fig.show(config={"displayModeBar": False})
+
+from itables import show
+
+
+show(
+    df2,
+    showIndex=False,
+    pageLength=20,
+    layout={
+        "topStart": None,
+        "topEnd": None,
+        "bottomStart": "paging",
+        "bottomEnd": None,
+    },
+    classes="display compact",
+)
+# Markdown(
+#    df2.to_markdown(index=False, colalign=("right", "right", "right", "right", "right"))
+# )
 ```
