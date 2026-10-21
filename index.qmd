@@ -8,26 +8,44 @@ import plotly.io as pio
 import plotly.express as px
 from datetime import date
 from IPython.display import Markdown
+from itables import show
 
 pio.renderers.default = "plotly_mimetype+notebook_connected"
 ```
 
 ```{python}
 #| echo: false
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv"
+
+numeric_cols = ["Egenvekt", "Påsatt vekt", "Forholdstall"]
+columns = ["Gruppe", *numeric_cols, "Dato"]
+
 df = pd.read_csv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS3PhQMmp5GAlPNAY3q3I9gx_tVuLPRFUMNK2-d3B2ux9ur-pQvnAfwXBr3uJEJpAZvj3aa2MV-uaWP/pub?gid=0&single=true&output=csv",
+    url,
     encoding="utf-8",
-)[["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]]
+)[columns].copy()
 
-for col in ["Egenvekt", "Påsatt vekt", "Forholdstall"]:
-    df[col] = df[col].str.replace(",", ".").astype(float)
+# Convert numeric columns, including decimal commas
+for col in numeric_cols:
+    df[col] = pd.to_numeric(
+        df[col].astype(str).str.replace(",", ".", regex=False),
+        errors="coerce",
+    )
 
+# Parse dates and clean rows without a valid own weight or group
+df["Dato"] = pd.to_datetime(df["Dato"], format="%d.%m.%Y", errors="coerce")
+df = df.dropna(subset=["Dato"]).copy()
+
+df["Gruppe"] = pd.to_numeric(df["Gruppe"], errors="coerce")
+
+df = df.dropna(subset=["Egenvekt", "Gruppe"]).copy()
 df["Gruppe"] = df["Gruppe"].astype(int)
 
-df = df.dropna(subset=["Egenvekt"])
-
-
-df["Dato"] = pd.to_datetime(df["Dato"], format="%d.%m.%Y")
+# Derived columns used in the plot and page heading
+df["År"] = df["Dato"].dt.year
+df["Gruppe_år"] = (
+    df["Gruppe"].astype(str) + " (" + df["År"].astype("Int64").astype(str) + ")"
+)
 
 siste_labdag = df["Dato"].max()
 ```
@@ -38,24 +56,23 @@ Siste resultater er fra `{python} siste_labdag.strftime("%d-%m-%Y")`.
 
 ### Topp tre bruer etter forholdstall
 ```{python}
+# | echo: false
 
-def add_g(s):
-    return s.apply(lambda x: f"{round(x):.0f} g")
+df_top = df.nlargest(3, "Forholdstall")[
+    ["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]
+].copy()
 
+for col in ["Egenvekt", "Påsatt vekt"]:
+    df_top[col] = df_top[col].round().astype("Int64").astype(str) + " g"
 
-cols_with_g = ["Egenvekt", "Påsatt vekt"]
-chosen_cols = ["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]
-
-df2 = (
-    df.assign(
-        **{col: add_g(df[col]) for col in cols_with_g},
-        Dato=df["Dato"].dt.strftime("%d-%m-%Y"),
-    )[chosen_cols]
-    .sort_values("Forholdstall", ascending=False)
-)
+df_top["Dato"] = df_top["Dato"].dt.strftime("%d-%m-%Y").fillna("")
+df_top["Forholdstall"] = df_top["Forholdstall"].round(2)
 
 Markdown(
-    df2.head(3).to_markdown(index=False, colalign=("right", "right", "right", "right", "right"))
+    df_top.to_markdown(
+        index=False,
+        colalign=("right", "right", "right", "right", "right"),
+    )
 )
 ```
 
@@ -64,8 +81,6 @@ Markdown(
 #| echo: false
 #| layout-align: center
 
-df["År"] = pd.to_datetime(df["Dato"]).dt.year
-df["Gruppe_år"] = df["Gruppe"].astype(str) + " (" + df["År"].astype(str) + ")"
 fig = px.scatter(
     df,
     x="Egenvekt",
@@ -113,9 +128,16 @@ fig.update_layout(
 )
 fig.show(config={"displayModeBar": False})
 
-from itables import show
 
+df2 = df.sort_values("Forholdstall", ascending=False)[
+    ["Gruppe", "Egenvekt", "Påsatt vekt", "Forholdstall", "Dato"]
+].copy()
 
+for col in ["Egenvekt", "Påsatt vekt"]:
+    df2[col] = df2[col].round().astype("Int64").astype(str) + " g"
+
+df2["Forholdstall"] = df2["Forholdstall"].round(2)
+df2["Dato"] = df2["Dato"].dt.strftime("%d-%m-%Y")
 show(
     df2,
     showIndex=False,
