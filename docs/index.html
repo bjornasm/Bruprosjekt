@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bruprosjekt</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3c09cf01b9717715406c5b992d80823.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.1.1.min"</script>
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Resultater</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Bruprosjekt</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Resultater</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./informasjon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informasjon</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Innhold</h2>
+   
+  <ul>
+  <li><a href="#topp-tre-bruer-etter-forholdstall" id="toc-topp-tre-bruer-etter-forholdstall" class="nav-link active" data-scroll-target="#topp-tre-bruer-etter-forholdstall">Topp tre bruer etter forholdstall</a></li>
+  <li><a href="#alle-resultater" id="toc-alle-resultater" class="nav-link" data-scroll-target="#alle-resultater">Alle resultater</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bruprosjekt</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Foreløpige resultater fra bruprosjektet i Mekanikk 1 på NTNU, Ålesund.</p>
+<p>Siste resultater er fra 20-10-2026.</p>
+<section id="topp-tre-bruer-etter-forholdstall" class="level3">
+<h3 class="anchored" data-anchor-id="topp-tre-bruer-etter-forholdstall">Topp tre bruer etter forholdstall</h3>
+<div id="976865a7" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Gruppe</th>
+<th style="text-align: right;">Egenvekt</th>
+<th style="text-align: right;">Påsatt vekt</th>
+<th style="text-align: right;">Forholdstall</th>
+<th style="text-align: right;">Dato</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">125 g</td>
+<td style="text-align: right;">9051 g</td>
+<td style="text-align: right;">72.29</td>
+<td style="text-align: right;">29-09-2025</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">210 g</td>
+<td style="text-align: right;">15000 g</td>
+<td style="text-align: right;">71.53</td>
+<td style="text-align: right;">02-10-2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">173 g</td>
+<td style="text-align: right;">12096 g</td>
+<td style="text-align: right;">69.92</td>
+<td style="text-align: right;">06-10-2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="alle-resultater" class="level3">
+<h3 class="anchored" data-anchor-id="alle-resultater">Alle resultater</h3>
+<div id="9641dbbd" class="cell" data-layout-align="center" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.1.1.min.js" integrity="sha256-HUEFyfiTnZJxCxur99FjbKYTvKSzwDaD3/x5TqHpFu4=" crossorigin="anonymous"></script>                <div id="1c09113f-02c8-4e68-ba10-6c0fe6e86cd6" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("1c09113f-02c8-4e68-ba10-6c0fe6e86cd6")) {                    Plotly.newPlot(                        "1c09113f-02c8-4e68-ba10-6c0fe6e86cd6",                        [{"hovertemplate":"Gruppe: %{customdata[0]}\u003cbr\u003eEgenvekt: %{x:.0f} g\u003cbr\u003eP\u00e5satt vekt: %{y:.0f} g\u003cbr\u003eForholdstall: %{customdata[1]:.2f}","hovertext":["8 (2026)","16 (2026)","2 (2025)","28 (2026)","3 (2025)","4 (2025)","4 (2026)","7 (2026)","5 (2025)","15 (2026)","6 (2025)","7 (2025)","20 (2026)","8 (2025)","10 (2026)","9 (2025)","10 (2025)","11 (2025)","12 (2025)","13 (2025)","13 (2026)","19 (2026)","9 (2026)","3 (2026)","18 (2026)","11 (2026)","1 (2026)","12 (2026)","21 (2025)","22 (2025)","23 (2025)","24 (2025)","27 (2025)","5 (2026)","2 (2026)","14 (2026)","17 (2026)","6 (2026)","37 (2025)","38 (2025)","40 (2025)","101 (2025)","102 (2025)"],"legendgroup":"","marker":{"color":{"dtype":"f8","bdata":"MzMzMzPzMkDXo3A9Ctc4QIXrUbgepUBAAAAAAABAPkD2KFyPwnVBQMP1KFyPElJAhetRuB4lQEDNzMzMzGxAQOxRuB6F60ZAFK5H4Xq0QEBcj8L1KHxKQFyPwvUobFFAmpmZmZnZQECPwvUoXG9EQNejcD0KN0FAH4XrUbjePUCPwvUoXE85QFK4HoXr4VFAzczMzMxsRECkcD0K12NDQOxRuB6Fa0FA9ihcj8J1QUB7FK5H4TpCQClcj8L1aEJAAAAAAADgRECkcD0K1+NEQI\u002fC9ShcT0VA9ihcj8L1RkCPwvUoXI80QLgehetRGEZAXI\u002fC9SicRECamZmZmRk1QMP1KFyPIkZAH4XrUbi+R0DhehSuR0FJQAAAAAAAoEpApHA9CtfjTEB7FK5H4XpRQIXrUbgehTpAXI\u002fC9SjcUEBmZmZmZmYnQI\u002fC9ShcTzlAzczMzMxMRkA="},"coloraxis":"coloraxis","size":{"dtype":"f8","bdata":"MzMzMzPzMkDXo3A9Ctc4QIXrUbgepUBAAAAAAABAPkD2KFyPwnVBQMP1KFyPElJAhetRuB4lQEDNzMzMzGxAQOxRuB6F60ZAFK5H4Xq0QEBcj8L1KHxKQFyPwvUobFFAmpmZmZnZQECPwvUoXG9EQNejcD0KN0FAH4XrUbjePUCPwvUoXE85QFK4HoXr4VFAzczMzMxsRECkcD0K12NDQOxRuB6Fa0FA9ihcj8J1QUB7FK5H4TpCQClcj8L1aEJAAAAAAADgRECkcD0K1+NEQI\u002fC9ShcT0VA9ihcj8L1RkCPwvUoXI80QLgehetRGEZAXI\u002fC9SicRECamZmZmRk1QMP1KFyPIkZAH4XrUbi+R0DhehSuR0FJQAAAAAAAoEpApHA9CtfjTEB7FK5H4XpRQIXrUbgehTpAXI\u002fC9SjcUEBmZmZmZmYnQI\u002fC9ShcTzlAzczMzMxMRkA="},"sizemode":"area","sizeref":0.3212888888888889,"symbol":"circle"},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":{"dtype":"f8","bdata":"AAAAAACAZkAAAAAAAIBwQAAAAAAAWHFAAAAAAACgYkAAAAAAALBsQM3MzMzMTF9AAAAAAADAZ0AAAAAAAGBjQJqZmZmZ6WtAAAAAAACgZECamZmZmalpQJqZmZmZKW9AAAAAAADAY0AzMzMzM3NjQAAAAAAA4G5AMzMzMzMjZECamZmZmcljQGZmZmZmNmpAmpmZmZmZbkAAAAAAAKBuQAAAAAAAoGtAAAAAAABAYEAAAAAAABB0QAAAAAAAoG5AAAAAAACgYEAAAAAAAMBvQAAAAAAAgF5AAAAAAADgaEAAAAAAALBgQGZmZmZmlmdAZmZmZmaedEDNzMzMzMRxQAAAAAAAQG5AAAAAAABgZkAAAAAAAABnQAAAAAAAcHFAAAAAAAAgZUAAAAAAAKBlQAAAAAAA4GZAAAAAAACAZUAAAAAAAMBhQM3MzMzMDF9AAAAAAABAXUA="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAACmqkAAAAAAAJ+5QAAAAAAAC8JAAAAAAACbsUAAAAAAAE6\u002fQAAAAACArcFAAAAAAAD3t0AAAAAAAOOzQAAAAAAA\u002fsNAAAAAAACItUAAAAAAgD3FQAAAAACA99BAAAAAAADMtEAAAAAAANe4QAAAAACAnMBAAAAAAADMskAAAAAAAEyvQAAAAAAATM1AAAAAAACIw0AAAAAAAI7CQAAAAAAAFL5AAAAAAAC7sUAAAAAAgNvGQAAAAAAAnsFAAAAAAACxtUAAAAAAALrEQAAAAAAAULRAAAAAAADZwUAAAAAAAHKlQAAAAAAAScBAAAAAAACQykAAAAAAAHC3QAAAAAAA7cRAAAAAAACawEAAAAAAACfCQAAAAAAABM1AAAAAAAASw0AAAAAAAKDHQAAAAAAA9bJAAAAAAICnxkAAAAAAAPSZQAAAAAAAjqhAAAAAAABitEA="},"yaxis":"y","type":"scatter","customdata":[["8 (2026)",18.95],["16 (2026)",24.84],["2 (2025)",33.29],["28 (2026)",30.25],["3 (2025)",34.92],["4 (2025)",72.29],["4 (2026)",32.29],["7 (2026)",32.85],["5 (2025)",45.84],["15 (2026)",33.41],["6 (2025)",52.97],["7 (2025)",69.69],["20 (2026)",33.7],["8 (2025)",40.87],["10 (2026)",34.43],["9 (2025)",29.87],["10 (2025)",25.31],["11 (2025)",71.53],["12 (2025)",40.85],["13 (2025)",38.78],["13 (2026)",34.84],["19 (2026)",34.92],["9 (2026)",36.46],["3 (2026)",36.82],["18 (2026)",41.75],["11 (2026)",41.78],["1 (2026)",42.62],["12 (2026)",45.92],["21 (2025)",20.56],["22 (2025)",44.19],["23 (2025)",41.22],["24 (2025)",21.1],["27 (2025)",44.27],["5 (2026)",47.49],["2 (2026)",50.51],["14 (2026)",53.25],["17 (2026)",57.78],["6 (2026)",69.92],["37 (2025)",26.52],["38 (2025)",67.44],["40 (2025)",11.7],["101 (2025)",25.31],["102 (2025)",44.6]]}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Egenvekt (gram)"},"tickformat":",.0f"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"P\u00e5satt vekt (gram)"},"tickformat":",..0f"},"coloraxis":{"colorbar":{"title":{"text":"Forholdstall","font":{"size":12}},"tickfont":{"size":12}},"colorscale":[[0.0,"rgb(243, 231, 155)"],[0.16666666666666666,"rgb(250, 196, 132)"],[0.3333333333333333,"rgb(248, 160, 126)"],[0.5,"rgb(235, 127, 134)"],[0.6666666666666666,"rgb(206, 102, 147)"],[0.8333333333333334,"rgb(160, 89, 160)"],[1.0,"rgb(92, 83, 165)"]]},"legend":{"tracegroupgap":0,"itemsizing":"constant"},"title":{"font":{"size":18},"x":0.5},"font":{"size":14},"hoverlabel":{"bgcolor":"white"},"margin":{"l":20,"r":20,"t":60,"b":60},"autosize":true},                        {"displayModeBar": false, "responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('1c09113f-02c8-4e68-ba10-6c0fe6e86cd6');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+<div class="cell-output cell-output-display">
+<!--| quarto-html-table-processing: none -->
+<table id="itables_441c2288_f017_49bc_af2f_58da758f1a79" hidden="hidden">
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; text-align:left"><a href="https://itables.org/"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="64" viewbox="0 0 500 400" style="font-family: 'Droid Sans', sans-serif;">
+    <g style="fill:var(--itables-logo-paper,#d9d7fc)">
+        <path d="M100,400H500V357H100Z"></path>
+        <path d="M100,300H400V257H100Z"></path>
+        <path d="M0,200H400V157H0Z"></path>
+        <path d="M100,100H500V57H100Z"></path>
+        <path d="M100,350H500V307H100Z"></path>
+        <path d="M100,250H400V207H100Z"></path>
+        <path d="M0,150H400V107H0Z"></path>
+        <path d="M100,50H500V7H100Z"></path>
+    </g>
+    <g style="fill:var(--itables-logo-ink,#1a1366);stroke:var(--itables-logo-ink,#1a1366);">
+   <rect x="100" y="7" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="5s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="0" y="107" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="3.5s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="0;0;400" dur="3.5s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="207" width="300" height="43">
+    <animate attributename="width" values="0;300;0" dur="3s" repeatcount="indefinite"></animate>
+    <animate attributename="x" values="100;100;400" dur="3s" repeatcount="indefinite"></animate>
+  </rect>
+        <rect x="100" y="307" width="400" height="43">
+    <animate attributename="width" values="0;400;0" dur="4s" repeatcount="indefinite"></animate>
+      <animate attributename="x" values="100;100;500" dur="4s" repeatcount="indefinite"></animate>
+  </rect>
+        <g style="fill:transparent;stroke-width:8; stroke-linejoin:round" rx="5">
+            <g transform="translate(45 50) rotate(-45)">
+                <circle r="33" cx="0" cy="0"></circle>
+                <rect x="-8" y="32" width="16" height="30"></rect>
+            </g>
+
+            <g transform="translate(450 152)">
+                <polyline points="-15,-20 -35,-20 -35,40 25,40 25,20"></polyline>
+                <rect x="-15" y="-40" width="60" height="60"></rect>
+            </g>
+
+            <g transform="translate(50 352)">
+                <polygon points="-35,-5 0,-40 35,-5"></polygon>
+                <polygon points="-35,10 0,45 35,10"></polygon>
+            </g>
+
+            <g transform="translate(75 250)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+
+            <g transform="translate(425 250) rotate(180)">
+                <polyline points="-30,30 -60,0 -30,-30"></polyline>
+                <polyline points="0,30 -30,0 0,-30"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>
+</a>
+        Loading ITables v2.9.1 from the internet...
+        (need <a href="https://itables.org/troubleshooting.html">help</a>?)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="itables_441c2288_f017_49bc_af2f_58da758f1a79_fallback"><table style="border-collapse:collapse"><thead>    <tr style="text-align: right;">
+      <th style="border:1px solid #ddd;padding:8px"><sup><noscript><span title="JavaScript not allowed. Please trust this notebook to get interactive tables.">🔒</span></noscript><a href="https://itables.org/fallbacks/static_preview.html" title="ITables v2.9.1 static preview">ⓘ</a></sup>Gruppe</th>
+      <th style="border:1px solid #ddd;padding:8px">Egenvekt</th>
+      <th style="border:1px solid #ddd;padding:8px">Påsatt vekt</th>
+      <th style="border:1px solid #ddd;padding:8px">Forholdstall</th>
+      <th style="border:1px solid #ddd;padding:8px">Dato</th>
+    </tr></thead><tbody>
+<tr><td style="border:1px solid #ddd;padding:8px">4</td><td style="border:1px solid #ddd;padding:8px">125 g</td><td style="border:1px solid #ddd;padding:8px">9051 g</td><td style="border:1px solid #ddd;padding:8px">72.29</td><td style="border:1px solid #ddd;padding:8px">29-09-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">11</td><td style="border:1px solid #ddd;padding:8px">210 g</td><td style="border:1px solid #ddd;padding:8px">15000 g</td><td style="border:1px solid #ddd;padding:8px">71.53</td><td style="border:1px solid #ddd;padding:8px">02-10-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">6</td><td style="border:1px solid #ddd;padding:8px">173 g</td><td style="border:1px solid #ddd;padding:8px">12096 g</td><td style="border:1px solid #ddd;padding:8px">69.92</td><td style="border:1px solid #ddd;padding:8px">06-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">7</td><td style="border:1px solid #ddd;padding:8px">249 g</td><td style="border:1px solid #ddd;padding:8px">17374 g</td><td style="border:1px solid #ddd;padding:8px">69.69</td><td style="border:1px solid #ddd;padding:8px">29-09-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">38</td><td style="border:1px solid #ddd;padding:8px">172 g</td><td style="border:1px solid #ddd;padding:8px">11599 g</td><td style="border:1px solid #ddd;padding:8px">67.44</td><td style="border:1px solid #ddd;padding:8px">31-10-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">17</td><td style="border:1px solid #ddd;padding:8px">169 g</td><td style="border:1px solid #ddd;padding:8px">9764 g</td><td style="border:1px solid #ddd;padding:8px">57.78</td><td style="border:1px solid #ddd;padding:8px">14-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">14</td><td style="border:1px solid #ddd;padding:8px">279 g</td><td style="border:1px solid #ddd;padding:8px">14856 g</td><td style="border:1px solid #ddd;padding:8px">53.25</td><td style="border:1px solid #ddd;padding:8px">13-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">6</td><td style="border:1px solid #ddd;padding:8px">205 g</td><td style="border:1px solid #ddd;padding:8px">10875 g</td><td style="border:1px solid #ddd;padding:8px">52.97</td><td style="border:1px solid #ddd;padding:8px">29-09-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">2</td><td style="border:1px solid #ddd;padding:8px">184 g</td><td style="border:1px solid #ddd;padding:8px">9294 g</td><td style="border:1px solid #ddd;padding:8px">50.51</td><td style="border:1px solid #ddd;padding:8px">30-09-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">5</td><td style="border:1px solid #ddd;padding:8px">179 g</td><td style="border:1px solid #ddd;padding:8px">8500 g</td><td style="border:1px solid #ddd;padding:8px">47.49</td><td style="border:1px solid #ddd;padding:8px">06-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">12</td><td style="border:1px solid #ddd;padding:8px">199 g</td><td style="border:1px solid #ddd;padding:8px">9138 g</td><td style="border:1px solid #ddd;padding:8px">45.92</td><td style="border:1px solid #ddd;padding:8px">07-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">5</td><td style="border:1px solid #ddd;padding:8px">223 g</td><td style="border:1px solid #ddd;padding:8px">10236 g</td><td style="border:1px solid #ddd;padding:8px">45.84</td><td style="border:1px solid #ddd;padding:8px">29-09-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">102</td><td style="border:1px solid #ddd;padding:8px">117 g</td><td style="border:1px solid #ddd;padding:8px">5218 g</td><td style="border:1px solid #ddd;padding:8px">44.60</td><td style="border:1px solid #ddd;padding:8px">19-11-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">27</td><td style="border:1px solid #ddd;padding:8px">242 g</td><td style="border:1px solid #ddd;padding:8px">10714 g</td><td style="border:1px solid #ddd;padding:8px">44.27</td><td style="border:1px solid #ddd;padding:8px">20-10-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">22</td><td style="border:1px solid #ddd;padding:8px">189 g</td><td style="border:1px solid #ddd;padding:8px">8338 g</td><td style="border:1px solid #ddd;padding:8px">44.19</td><td style="border:1px solid #ddd;padding:8px">06-10-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">1</td><td style="border:1px solid #ddd;padding:8px">122 g</td><td style="border:1px solid #ddd;padding:8px">5200 g</td><td style="border:1px solid #ddd;padding:8px">42.62</td><td style="border:1px solid #ddd;padding:8px">30-09-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">11</td><td style="border:1px solid #ddd;padding:8px">254 g</td><td style="border:1px solid #ddd;padding:8px">10612 g</td><td style="border:1px solid #ddd;padding:8px">41.78</td><td style="border:1px solid #ddd;padding:8px">07-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">18</td><td style="border:1px solid #ddd;padding:8px">133 g</td><td style="border:1px solid #ddd;padding:8px">5553 g</td><td style="border:1px solid #ddd;padding:8px">41.75</td><td style="border:1px solid #ddd;padding:8px">14-10-2026</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">23</td><td style="border:1px solid #ddd;padding:8px">330 g</td><td style="border:1px solid #ddd;padding:8px">13600 g</td><td style="border:1px solid #ddd;padding:8px">41.22</td><td style="border:1px solid #ddd;padding:8px">06-10-2025</td></tr>
+<tr><td style="border:1px solid #ddd;padding:8px">8</td><td style="border:1px solid #ddd;padding:8px">156 g</td><td style="border:1px solid #ddd;padding:8px">6359 g</td><td style="border:1px solid #ddd;padding:8px">40.87</td><td style="border:1px solid #ddd;padding:8px">29-09-2025</td></tr>
+</tbody><tfoot><tr><td colspan="5" style="border:none;padding:8px;text-align:center">(23 more rows not shown)</td></tr></tfoot></table></div><script>document.getElementById("itables_441c2288_f017_49bc_af2f_58da758f1a79")?.removeAttribute("hidden");document.getElementById("itables_441c2288_f017_49bc_af2f_58da758f1a79_fallback")?.setAttribute("hidden", "hidden");</script>
+<link href="https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.css" rel="stylesheet">
+<script type="module">
+    import { ITable, jQuery as $ } from 'https://www.unpkg.com/dt_for_itables@2.5.8/dt_bundle.js';
+
+    document.querySelectorAll("#itables_441c2288_f017_49bc_af2f_58da758f1a79:not(.dataTable)").forEach(table => {
+        if (!(table instanceof HTMLTableElement))
+            return;
+
+        let dt_args = {
+          "classes": ["display", "compact"],
+          "columnDefs": [{"render": "function (data, type, row, meta) { return type === 'sort' || type === 'type' ? data[1] : data[0]; }", "targets": [3]}],
+          "data_json": "[[4, \"125 g\", \"9051 g\", [\"72.29\", 72.29], \"29-09-2025\"], [11, \"210 g\", \"15000 g\", [\"71.53\", 71.53], \"02-10-2025\"], [6, \"173 g\", \"12096 g\", [\"69.92\", 69.92], \"06-10-2026\"], [7, \"249 g\", \"17374 g\", [\"69.69\", 69.69], \"29-09-2025\"], [38, \"172 g\", \"11599 g\", [\"67.44\", 67.44], \"31-10-2025\"], [17, \"169 g\", \"9764 g\", [\"57.78\", 57.78], \"14-10-2026\"], [14, \"279 g\", \"14856 g\", [\"53.25\", 53.25], \"13-10-2026\"], [6, \"205 g\", \"10875 g\", [\"52.97\", 52.97], \"29-09-2025\"], [2, \"184 g\", \"9294 g\", [\"50.51\", 50.51], \"30-09-2026\"], [5, \"179 g\", \"8500 g\", [\"47.49\", 47.49], \"06-10-2026\"], [12, \"199 g\", \"9138 g\", [\"45.92\", 45.92], \"07-10-2026\"], [5, \"223 g\", \"10236 g\", [\"45.84\", 45.84], \"29-09-2025\"], [102, \"117 g\", \"5218 g\", [\"44.60\", 44.6], \"19-11-2025\"], [27, \"242 g\", \"10714 g\", [\"44.27\", 44.27], \"20-10-2025\"], [22, \"189 g\", \"8338 g\", [\"44.19\", 44.19], \"06-10-2025\"], [1, \"122 g\", \"5200 g\", [\"42.62\", 42.62], \"30-09-2026\"], [11, \"254 g\", \"10612 g\", [\"41.78\", 41.78], \"07-10-2026\"], [18, \"133 g\", \"5553 g\", [\"41.75\", 41.75], \"14-10-2026\"], [23, \"330 g\", \"13600 g\", [\"41.22\", 41.22], \"06-10-2025\"], [8, \"156 g\", \"6359 g\", [\"40.87\", 40.87], \"29-09-2025\"], [12, \"245 g\", \"10000 g\", [\"40.85\", 40.85], \"02-10-2025\"], [13, \"245 g\", \"9500 g\", [\"38.78\", 38.78], \"03-10-2025\"], [3, \"245 g\", \"9020 g\", [\"36.82\", 36.82], \"30-09-2026\"], [9, \"321 g\", \"11703 g\", [\"36.46\", 36.46], \"07-10-2026\"], [19, \"130 g\", \"4539 g\", [\"34.92\", 34.92], \"14-10-2026\"], [3, \"230 g\", \"8014 g\", [\"34.92\", 34.92], \"29-09-2025\"], [13, \"221 g\", \"7700 g\", [\"34.84\", 34.84], \"13-10-2026\"], [10, \"247 g\", \"8505 g\", [\"34.43\", 34.43], \"07-10-2026\"], [20, \"158 g\", \"5324 g\", [\"33.70\", 33.7], \"14-10-2026\"], [15, \"165 g\", \"5512 g\", [\"33.41\", 33.41], \"13-10-2026\"], [2, \"278 g\", \"9238 g\", [\"33.29\", 33.29], \"29-09-2025\"], [7, \"155 g\", \"5091 g\", [\"32.85\", 32.85], \"06-10-2026\"], [4, \"190 g\", \"6135 g\", [\"32.29\", 32.29], \"30-09-2026\"], [28, \"149 g\", \"4507 g\", [\"30.25\", 30.25], \"20-10-2026\"], [9, \"161 g\", \"4812 g\", [\"29.87\", 29.87], \"02-10-2025\"], [37, \"183 g\", \"4853 g\", [\"26.52\", 26.52], \"31-10-2025\"], [10, \"158 g\", \"4006 g\", [\"25.31\", 25.31], \"02-10-2025\"], [101, \"124 g\", \"3143 g\", [\"25.31\", 25.31], \"19-11-2025\"], [16, \"264 g\", \"6559 g\", [\"24.84\", 24.84], \"13-10-2026\"], [24, \"284 g\", \"6000 g\", [\"21.10\", 21.1], \"06-10-2025\"], [21, \"134 g\", \"2745 g\", [\"20.56\", 20.56], \"06-10-2025\"], [8, \"180 g\", \"3411 g\", [\"18.95\", 18.95], \"06-10-2026\"], [40, \"142 g\", \"1661 g\", [\"11.70\", 11.7], \"31-10-2025\"]]",
+          "keys_to_be_evaluated": [["columnDefs", 0, "render"]],
+          "layout": {"bottomEnd": null, "bottomStart": "paging", "topEnd": null, "topStart": null},
+          "order": [],
+          "pageLength": 20,
+          "style": {"caption-side": "bottom", "margin": "auto", "table-layout": "auto", "width": "auto"},
+          "table_html": "<table><thead>\n    <tr style=\"text-align: right;\">\n      \n      <th>Gruppe</th>\n      <th>Egenvekt</th>\n      <th>P\u00e5satt vekt</th>\n      <th>Forholdstall</th>\n      <th>Dato</th>\n    </tr>\n  </thead></table>",
+          "text_in_header_can_be_selected": true
+        };
+        new ITable(table, dt_args);
+    });
+</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
