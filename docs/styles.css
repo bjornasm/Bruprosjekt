@@ -1,1 +1,9 @@
 /* css styles */
+
+div[id^="itables_"] table.dataTable tbody td {
+    text-align: right !important;
+}
+
+div[id^="itables_"] table.dataTable thead th {
+    text-align: left !important;
+}

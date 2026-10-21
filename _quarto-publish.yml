@@ -1,0 +1,4 @@
+project:
+  type: website
+  output-dir: "_publish"
+  post-render: copy-site.py
